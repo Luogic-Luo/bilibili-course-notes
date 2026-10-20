@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bilibili Course Notes"
+  short_description: "Turn a Bilibili course into structured chapter notes"
+  default_prompt: "Use $bilibili-course-notes to summarize this Bilibili course into per-chapter study notes."

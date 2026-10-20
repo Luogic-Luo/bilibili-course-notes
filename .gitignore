@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
+work/
+*.mp4
+*.m4a

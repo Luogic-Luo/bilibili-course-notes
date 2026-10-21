@@ -95,3 +95,43 @@ Rules that make it study-efficient:
 - Verify every number in a table (durations, sizes, counts) against the
   manifest rather than by eye.
 - Verify the markdown renders: no unclosed table rows, no stray backticks.
+
+## Marking which pass a section is based on
+
+Once a section is rewritten from a **full** transcript, it no longer matches the
+textbook's ordering. Mark it so the reader knows:
+
+- `### 2.3 树和二叉树、图（P7） 📖 按老师讲（完整转写）` - rewritten from the
+  teacher's actual teaching order, with his examples.
+- Unmarked sections are still built from the head transcript + syllabus, i.e.
+  correct coverage but textbook ordering.
+
+## Mark what the course did NOT cover
+
+Teachers skip material that the textbook includes. Writing it as a normal exam
+point overstates the course and misdirects revision time. Put it in a clearly
+labelled block at the end of the section instead:
+
+```markdown
+> **⚠️ 本节课程未展开、但教材/考纲涉及的内容（自学补充）**
+> 老师这节课**没有讲**：**字符编码（ASCII/GBK/UTF-8）**、**IEEE 754 的具体格式**……
+> 这些属于教材延伸，**偶尔以选择题出现**；**本节重点是上面 3 个考点**。
+```
+
+Verified repeatedly on a 24-part exam course: sections routinely contained
+material the teacher never mentioned (shortest path, key path, B-trees, ASCII
+encoding, IEEE 754 bit layouts, Huffman-vs-B-tree). Marking the gaps is one of
+the highest-value things the transcript gives you - it changes how the user
+spends their hours.
+
+## Preserve the teacher's own framing
+
+- Keep his worked examples and analogies (a queue-numbering system for queues
+  and algorithms; a 8-node tree used throughout a whole section).
+- Keep his formulas, stated as he states them (`单元数 = 末地址 - 首地址 + 1`),
+  and keep his "this is how you solve it" shortcuts (the "substitute the
+  options" trick for matrices and grammars; "count the loops, +1" instead of
+  McCabe's formula).
+- Keep his emphasis markers (计算题 / 概念辨析 / 下午题 / 送分题).
+- When the teacher states a fact you believe is wrong, write the fact
+  correctly and note the discrepancy - do not silently reproduce the error.

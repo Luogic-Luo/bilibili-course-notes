@@ -135,3 +135,40 @@ spends their hours.
 - Keep his emphasis markers (计算题 / 概念辨析 / 下午题 / 送分题).
 - When the teacher states a fact you believe is wrong, write the fact
   correctly and note the discrepancy - do not silently reproduce the error.
+
+## Real-world validation
+
+This pipeline was run end-to-end on a 24-part, 13.5 h exam-prep course
+(Bilibili `BV1rc411t71D`, 软考中级软件设计师). Results:
+
+- **Wall time**: ~2 h of CPU on 16 cores for a full 24-part transcription
+  (two parallel workers, RTF ~0.3 each). The `head` pass (6 min/part) took
+  ~30 min and was enough to build the whole course's outline.
+- **Yield**: the transcripts exposed that the teacher skipped large chunks of
+  the textbook (shortest path, key path, B-trees, ASCII/GBK encoding, IEEE 754
+  layouts, Haskell-style grammars and finite automata were taught; Dijkstra,
+  Floyd, key path, max-flow, B/B+ trees, red-black trees, Huffman-vs-B-tree,
+  thread scheduling, several scheduling algorithms, SPOLing, virtual memory
+  paging details, 4NF/5NF, 2PL, OSI layer-device pairing, subnets and CIDR,
+  KMP, BST/AVL, storage allocation, scope and operator precedence were NOT).
+  Roughly 30-40% of what a syllabus-derived summary would have asserted was
+  never taught. This is the single biggest value the transcript adds.
+- **Bugs it caught in the draft notes**: a wrong traversal-uniqueness claim
+  ("先序 + 后序 uniquely determines a binary tree" - false), a wrong exam
+  structure claim (3 afternoon questions instead of 5), and a chapter whose
+  entire subject matter was absent from the course.
+- **Extra sections worth carrying**: the teacher gave concrete formulas
+  (Cache `t_a = h*t_c + (1-h)*t_m`, `2^k >= n+k+1` for Hamming codes,
+  `unit count = end - start + 1`, series/parallel reliability, P/V operations,
+  banker's algorithm, page replacement, bitmap indexing, multimedia capacity,
+  McCabe cyclomatic complexity), plus exam-taking heuristics (which afternoon
+  question is worth what, and the "count the loops, +1" shortcut).
+
+Workflow that worked:
+
+1. `head` pass for all parts -> draft notes from it + the syllabus.
+2. `rest` pass in the background.
+3. Rewrite each section as its full transcript lands; mark it
+   `📖 按老师讲（完整转写）`; add a "course did not cover this" block.
+4. Keep the teacher's worked examples and shortcuts; keep his weighting.
+5. Refresh a part-index table and a high-frequency/error-prone appendix at the end.
